@@ -1,0 +1,21 @@
+[WebAPP]
+title = "Go Connection Server"
+env = "DEV"
+port = "8020"
+domain="www.lianleo.cn"
+app="go connection server"
+expires=86400
+
+
+[MasterMDB]
+addrs = ["106.14.176.235:17871"]
+db = "ntz_dev"
+username = "ntz_dev"
+password = "CNQ00889dev223838243adiIida8jqfwe"
+timeout = 50
+
+[CommonCache]
+addr = "127.0.0.1:6379"
+db = 0
+timeout = 5
+password = ""
