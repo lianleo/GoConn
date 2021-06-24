@@ -6,6 +6,7 @@ import (
 	"github.com/lianleo/GoCommon/log"
 	"github.com/lianleo/GoCommon/tools"
 	"github.com/lianleo/GoConn/config"
+	redis_tools "github.com/lianleo/GoConn/redis_tools/ctrl"
 )
 
 //Install 初始化路由
@@ -14,6 +15,9 @@ func Install(eng *gin.Engine) {
 	gocon.Use(middleware())
 
 	gocon.GET("/ping", func(c *gin.Context) {
+		for i := 0; i < int(1000); i++ {
+			log.Info("测试日志")
+		}
 		c.JSON(200, gin.H{
 			"project": "go connection ",
 			"time":    tools.NowEpochMS(),
@@ -24,6 +28,8 @@ func Install(eng *gin.Engine) {
 	v1 := gocon.Group("api/v1")
 
 	v1.Static("/static", config.Params.WebAPP.StaticDir)
+
+	v1.GET("redis", redis_tools.Redis)
 
 }
 

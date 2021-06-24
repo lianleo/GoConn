@@ -30,7 +30,7 @@ func init() {
 }
 
 func main() {
-	log.Infof("start %s", config.Params.WebAPP.App)
+	log.Infof("start %s", config.Params.WebAPP.Title)
 	r := gin.Default()
 
 	r.GET("/", func(c *gin.Context) {
@@ -49,7 +49,7 @@ func main() {
 
 	router.Install(r)
 
-	log.Infof("%s service begin run", config.Params.WebAPP.App)
+	log.Infof("%s service begin run", config.Params.WebAPP.Title)
 
 	r.Run(":" + config.Params.WebAPP.Port)
 }

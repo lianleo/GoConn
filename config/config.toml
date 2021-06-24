@@ -3,7 +3,7 @@ title = "Go Connection Server"
 env = "DEV"
 port = "8020"
 domain="www.lianleo.cn"
-app="go connection server"
+app="goconn"
 expires=86400
 
 
@@ -19,3 +19,12 @@ addr = "127.0.0.1:6379"
 db = 0
 timeout = 5
 password = ""
+
+
+[Log]
+disable_stdout=false
+filename="log/goconn.log"
+max_size=1
+max_age=90
+max_backups=10
+disable_debug_level=true
