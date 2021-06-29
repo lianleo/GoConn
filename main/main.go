@@ -7,7 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/lianleo/GoCommon/log"
-	"github.com/lianleo/GoConn/config"
+	"github.com/lianleo/GoConn/global"
 	"github.com/lianleo/GoConn/router"
 )
 
@@ -22,7 +22,7 @@ func init() {
 	}
 
 	fmt.Println(configPath)
-	err := config.Install(configPath)
+	err := global.Install(configPath)
 	if err != nil {
 		log.Error("init error", err)
 		panic(err)
@@ -30,7 +30,7 @@ func init() {
 }
 
 func main() {
-	log.Infof("start %s", config.Params.WebAPP.Title)
+	log.Infof("start %s", global.Config.WebAPP.Title)
 	r := gin.Default()
 
 	r.GET("/", func(c *gin.Context) {
@@ -49,7 +49,7 @@ func main() {
 
 	router.Install(r)
 
-	log.Infof("%s service begin run", config.Params.WebAPP.Title)
+	log.Infof("%s service begin run", global.Config.WebAPP.Title)
 
-	r.Run(":" + config.Params.WebAPP.Port)
+	r.Run(":" + global.Config.WebAPP.Port)
 }

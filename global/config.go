@@ -1,4 +1,4 @@
-package config
+package global
 
 import (
 	"errors"
@@ -14,7 +14,7 @@ import (
 var configPath string
 var (
 	ERROR_CONFIG_PARSE = errors.New("load config error")
-	Params             TOMLFile
+	Config             TOMLFile
 )
 
 //TOMLFile 配置
@@ -48,10 +48,10 @@ func Install(cp string) error {
 	if err := configInit(configPath); err != nil {
 		return ERROR_CONFIG_PARSE
 	}
-	log.Init(Params.LogConfig)
+	log.Init(Config.LogConfig)
 
 	//初始化数据库
-	if err := mongo.Init(Params.MasterMDB); err != nil {
+	if err := mongo.Init(Config.MasterMDB); err != nil {
 		fmt.Println("init failed: ", err)
 		return fmt.Errorf("init failed: %v", err)
 	}
@@ -63,7 +63,7 @@ func configInit(loc string) error {
 	if loc == "" {
 		return ERROR_CONFIG_PARSE
 	}
-	if _, err := toml.DecodeFile(loc, &Params); err != nil {
+	if _, err := toml.DecodeFile(loc, &Config); err != nil {
 		log.Fatal("configInit error", err)
 		return ERROR_CONFIG_PARSE
 	}
