@@ -6,6 +6,7 @@ import (
 	"github.com/lianleo/GoCommon/log"
 	"github.com/lianleo/GoCommon/tools"
 	"github.com/lianleo/GoConn/global"
+	"github.com/lianleo/GoConn/mongo"
 	"github.com/lianleo/GoConn/mysql"
 	"github.com/lianleo/GoConn/redis"
 )
@@ -31,6 +32,7 @@ func Install(eng *gin.Engine) {
 
 	mysql.Install(v1)
 
+	mongo.Install(v1)
 }
 
 func middleware() gin.HandlerFunc {

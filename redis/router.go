@@ -11,5 +11,6 @@ func Install(root *gin.RouterGroup) {
 	r.POST("connect", ctrl.Connect)
 	r.GET("get/:key", ctrl.GetKey)
 	r.POST("set", ctrl.SetKey)
+	r.GET("keys/:pattern", ctrl.Keys)
 
 }

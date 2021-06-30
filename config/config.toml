@@ -8,11 +8,12 @@ expires=86400
 
 
 [MasterMDB]
-addrs = ["106.14.176.235:17871"]
-db = "ntz_dev"
-username = "ntz_dev"
-password = "CNQ00889dev223838243adiIida8jqfwe"
+addrs = ["localhost:27017"]
+database = "lemocar"
+username = "lemocar"
+password = "LM3fsKjsd9083JUB4dfhas4susUH7937"
 timeout = 50
+poollimit = 10
 
 [CommonCache]
 addr = "127.0.0.1:6379"
@@ -28,3 +29,12 @@ max_size=1
 max_age=90
 max_backups=10
 disable_debug_level=true
+
+[MongoDB]
+ip = "localhost"
+port = 27017
+database = "lemocar"
+username = "lemocar"
+password = "LM3fsKjsd9083JUB4dfhas4susUH7937"
+timeout = 50
+poollimit = 10

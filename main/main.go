@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/lianleo/GoCommon/log"
 	"github.com/lianleo/GoConn/global"
+	mongo_conn "github.com/lianleo/GoConn/mongo/conn"
 	"github.com/lianleo/GoConn/router"
 )
 
@@ -26,6 +27,10 @@ func init() {
 	if err != nil {
 		log.Error("init error", err)
 		panic(err)
+	}
+
+	if err = mongo_conn.Install(global.Config.MongoDB); err != nil {
+		log.Error("init error", err)
 	}
 }
 

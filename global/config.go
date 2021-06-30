@@ -23,6 +23,7 @@ type TOMLFile struct {
 	MasterMDB   mongo.Config `toml:"MasterMDB"`
 	LogConfig   log.Config   `toml:"Log"`
 	CommonCache cache.Config `toml:"CommonCache"`
+	MongoDB     mongo.Config `toml:"MongoDB"`
 }
 
 //WebAPP WebAPP

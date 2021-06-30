@@ -68,3 +68,22 @@ func SetKey(c *gin.Context) {
 		httpd.WriteOk(c, result)
 	}
 }
+
+func Keys(c *gin.Context) {
+	pattern := c.Query("pattern")
+	if len(pattern) == 0 {
+		pattern = c.Params.ByName("pattern")
+	}
+
+	connName, err := c.Cookie(service.RedisCookieKey)
+	if err != nil {
+		httpd.WriteError2(c, err)
+	}
+
+	result, err := service.Keys(c, connName, pattern)
+	if err != nil {
+		httpd.WriteError2(c, err)
+	} else {
+		httpd.WriteOk(c, result)
+	}
+}

@@ -25,13 +25,6 @@ func Connect(ctx context.Context, name string, config model.ConnConfig) error {
 }
 
 func GetKey(ctx context.Context, connName string, key string) (interface{}, error) {
-	// c.SetNX(key.GetKey(ctx, keyParam...), "1", key.GetExpire()).Result()
-	// conn.Connect(model.ConnConfig{
-	// 	Addr:     "127.0.0.1:6379",
-	// 	Password: "",
-	// 	DB:       0,
-	// })
-
 	client, err := conn.GetConnect(connName)
 	if err != nil {
 		return nil, err
@@ -41,14 +34,17 @@ func GetKey(ctx context.Context, connName string, key string) (interface{}, erro
 }
 
 func SetKey(ctx context.Context, connName string, key string, value string) (string, error) {
-	// conn.Connect(model.ConnConfig{
-	// 	Addr:     "127.0.0.1:6379",
-	// 	Password: "",
-	// 	DB:       0,
-	// })
 	client, err := conn.GetConnect(connName)
 	if err != nil {
 		return "", err
 	}
 	return client.Set(key, value, -1).Result()
+}
+
+func Keys(ctx context.Context, connName string, pattern string) ([]string, error) {
+	client, err := conn.GetConnect(connName)
+	if err != nil {
+		return nil, err
+	}
+	return client.Keys(pattern).Result()
 }
