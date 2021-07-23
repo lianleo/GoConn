@@ -2,7 +2,7 @@
 title = "Go Connection Server"
 env = "DEV"
 port = "8020"
-domain="www.lianleo.cn"
+domain="localhost"
 app="goconn"
 expires=86400
 

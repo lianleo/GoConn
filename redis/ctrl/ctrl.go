@@ -9,7 +9,7 @@ import (
 
 func Connect(c *gin.Context) {
 	var req struct {
-		Name   string           `json:"name"`
+		Name   string           `json:"name" form:"name"`
 		Config model.ConnConfig `json:"config"`
 		httpd.RequestValid
 	}
