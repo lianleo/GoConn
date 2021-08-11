@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 
+	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 	"github.com/lianleo/GoConn/mongo/conn"
 )
@@ -12,14 +13,23 @@ func AddCollection(ctx context.Context, database string, collectionName string) 
 	if err != nil {
 		return err
 	}
-	r := struct {
-		ID    bson.ObjectId `bson:"_id"`
-		Value string        `bson:"value"`
-	}{
-		bson.NewObjectId(),
-		"hello world",
+
+	info := mgo.CollectionInfo{
+		Collation: &mgo.Collation{
+			Locale: "zh",
+		},
 	}
-	return db.C(collectionName).Insert(r)
+
+	return db.C(collectionName).Create(&info)
+
+	// r := struct {
+	// 	ID    bson.ObjectId `bson:"_id"`
+	// 	Value string        `bson:"value"`
+	// }{
+	// 	bson.NewObjectId(),
+	// 	"hello world",
+	// }
+	// return db.C(collectionName).Insert(r)
 }
 
 func Insert(ctx context.Context, database string, coll string, data bson.M) error {
